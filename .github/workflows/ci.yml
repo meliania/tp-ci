@@ -6,8 +6,6 @@ name: Node.js CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   build:
@@ -30,6 +28,6 @@ jobs:
       uses: docker/build-push-action@v2
       with:
             push: true
-            tags: user/app:latest
+            tags:  ${{ secrets.DOCKER_USER }}/app:latest
     - name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}
